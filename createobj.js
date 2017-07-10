@@ -8,5 +8,4 @@ function newObj (proto) {
 };
 var Z = {};
 var A = newObj(Z);
-Object.getPrototypeOf(A);// [object Object]
-Object.getPrototypeOf(Object.prototype); //null
+Object.getPrototypeOf(A);//
