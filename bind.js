@@ -2,16 +2,16 @@ function bindF(f, o) {
 	//проверить типы входящих аргументов
 	var func = typeof f;
 	if (func!=='function') throw new TypeError('not a function');
-	var context = typeof o;
+	var contextType = typeof o;
 	//null or undefined refers to Object.window
-	if (context!=='object' && context!='function' && context!=='undefined' && context!=='null' ) throw new TypeError('invalid context');
-	context = o;
-	//param = arguments;
+	if (contextType!=='object' && contextType!='function' && contextType!=='undefined' && contextType!=='null' ) throw new TypeError('invalid context');
+	var context = o;
+	var param = arguments;
 	return function() {
 		var args = [];
-		for(var i = 2; i < arguments.length; i++) args.push(arguments[i]);
+		for(var i = 2; i < param.length; i++) args.push(param[i]); //
         for(var i = 0; i < arguments.length; i++) args.push(arguments[i]);
-  	return f.apply(o, args);
+  	return f.apply(context, args);
 	};
 } 
 
