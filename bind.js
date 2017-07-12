@@ -5,13 +5,10 @@ function bindF(f, o) {
 	var contextType = typeof o;
 	//null or undefined refers to Object.window
 	if (contextType!=='object' && contextType!='function' && contextType!=='undefined' && contextType!=='null' ) throw new TypeError('invalid context');
-	var context = o;
-	var param = arguments;
 	return function() {
 		var args = [];
-		for(var i = 2; i < param.length; i++) args.push(param[i]); //
-        for(var i = 0; i < arguments.length; i++) args.push(arguments[i]);
-  	return f.apply(context, args);
+		args = Array.prototype.slice.apply(arguments);
+  	return f.apply(o, args);
 	};
 } 
 
