@@ -3,8 +3,13 @@ function callF(f, o) {
 	var contextType = typeof o;
 	if (funcType!='function') throw new TypeError('not a function');
 	if (contextType!=='object' && contextType!='function' && contextType!=='undefined' && contextType!=='null' ) throw new TypeError('invalid context');
-		var args = [];
-        for(var i = 2; i < arguments.length; i++) args.push(arguments[i]);
+		var args = [], m= [];
+		
+		args = Array.prototype.slice.apply(arguments); 
+		m = args.splice(0, 2);
+		
+		
+        //for(var i = 2; i < arguments.length; i++) args.push(arguments[i]);
 		var result = f.apply(o, args);
 		return result;
 };
